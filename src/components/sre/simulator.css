@@ -1,0 +1,123 @@
+:root {
+  --terminal-bg: #050505;
+  --terminal-card: #0c0c0e;
+  --terminal-border: #1a1a1e;
+  --terminal-text: #d1d5db;
+  --terminal-accent: #3b82f6;
+  --terminal-danger: #ef4444;
+  --terminal-success: #10b981;
+  --terminal-warning: #f59e0b;
+}
+
+body {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', monospace;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.sre-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.terminal-card {
+  background: var(--terminal-card);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.status-glow {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+.status-healthy { 
+  background: var(--terminal-success); 
+  box-shadow: 0 0 8px var(--terminal-success); 
+}
+
+.status-alert { 
+  background: var(--terminal-danger); 
+  box-shadow: 0 0 12px var(--terminal-danger); 
+}
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.scanline {
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(59, 130, 246, 0.03) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 100% 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  animation: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Custom Scrollbar for Terminal Feel */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1e;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2e;
+}
+
+/* Recharts Overrides */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #1a1a1e;
+}
+
+.recharts-tooltip-cursor {
+  stroke: #3b82f6;
+  stroke-dasharray: 5 5;
+}
+
+/* Glitch Effect (Optional, use sparingly) */
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
